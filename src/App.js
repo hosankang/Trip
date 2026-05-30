@@ -337,17 +337,24 @@ export default function App() {
   }, [expandedIdx, activeDay]);
 
   const st = {
-    app: { 
-      background: "#0D1117", 
-      minHeight: "100vh", 
-      fontFamily: "'Noto Sans KR', -apple-system, sans-serif", 
-      color: "#F9FAFB", 
-      maxWidth: "500px",                    // 최대 가로폭을 500px로 제한
-      margin: "0 auto",                     // 위아래 0, 좌우 auto로 설정하여 화면 중앙에 배치
-      position: "relative", 
+    page: {
+      background: "#0D1117",
+      minHeight: "100vh",
+      width: "100%",
+      overflowX: "hidden",
+    },
+    app: {
+      background: "#0D1117",
+      minHeight: "100vh",
+      fontFamily: "'Noto Sans KR', -apple-system, sans-serif",
+      color: "#F9FAFB",
+      width: "100%",
+      maxWidth: "100%",
+      margin: 0,
+      position: "relative",
       paddingBottom: 72,
-      boxShadow: "0 0 20px rgba(0,0,0,0.5)" // 양옆 빈 공간과 구분되도록 그림자 추가
-    },    
+      overflowX: "hidden"
+    },
     topBar: { background:"#111827", padding:"12px 16px 10px", borderBottom:"1px solid #1F2937", position:"sticky", top:0, zIndex:30, display:"flex", justifyContent:"space-between", alignItems:"center" },
     content: { padding:"12px 16px 24px" },
     sectionTitle: { fontSize:12, fontWeight:700, color:"#6B7280", marginBottom:10, textTransform:"uppercase", letterSpacing:"0.06em" },
@@ -355,7 +362,7 @@ export default function App() {
     mealCard: { background:"#111827", borderRadius:10, padding:"12px", marginBottom:8 },
     urgentBadge: { background:"#EF4444", color:"#fff", fontSize:10, fontWeight:700, padding:"2px 7px", borderRadius:10, marginLeft:6 },
     // 하단 바가 중앙 배치된 app 너비(최대 500px)를 벗어나지 않도록 maxWidth 연동
-    bottomNav: { position:"fixed", bottom:0, left:0, right:0, margin:"0 auto", width:"100%", maxWidth:"500px", background:"#111827", borderTop:"1px solid #1F2937", display:"flex", zIndex:40 },
+    bottomNav: { position:"fixed", bottom:0, left:0, right:0, width:"100%", maxWidth:"100%", background:"#111827", borderTop:"1px solid #1F2937", display:"flex", zIndex:40 },
     mapBtn: { display:"inline-flex", alignItems:"center", gap:4, background:"#0D1117", color:"#60A5FA", fontSize:11, fontWeight:700, padding:"5px 10px", borderRadius:8, textDecoration:"none", border:"1px solid #1E3A5F", cursor:"pointer" },
   };
 
@@ -413,7 +420,13 @@ export default function App() {
   };
 
   return (
-    <div style={st.app}>
+    <div style={st.page}>
+      <style>{`
+        html, body, #root { margin: 0; padding: 0; background: #0D1117; }
+        * { box-sizing: border-box; }
+        body { overflow-x: hidden; }
+      `}</style>
+      <div style={st.app}>
       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;700&display=swap" rel="stylesheet"/>
 
       <div style={st.topBar}>
@@ -604,6 +617,7 @@ export default function App() {
           </button>
         ))}
       </nav>
+    </div>
     </div>
   );
 }
