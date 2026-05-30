@@ -172,6 +172,7 @@ export default function App() {
   const [tab, setTab] = useState("home");
   const [activeDay, setActiveDay] = useState(0);
   const [expandedIdx, setExpandedIdx] = useState(null);
+  const [mapHeight, setMapHeight] = useState(210);
   const [expandedCostDay, setExpandedCostDay] = useState(null);
   const [done, setDone] = useState(() => {
     try { return JSON.parse(localStorage.getItem("tokyo_done") || "{}"); } catch { return {}; }
@@ -336,6 +337,41 @@ export default function App() {
     // eslint-disable-next-line
   }, [expandedIdx, activeDay]);
 
+  // 지도 높이 변경 시 구글맵에 크기 변경 알림 (안 그러면 늘어난 부분이 회색)
+  useEffect(() => {
+    const map = mapObjRef.current, g = gRef.current;
+    if (!map || !g) return;
+    const t = setTimeout(() => {
+      const c = map.getCenter();
+      g.event.trigger(map, "resize");
+      if (c) map.setCenter(c);
+    }, 60);
+    return () => clearTimeout(t);
+    // eslint-disable-next-line
+  }, [mapHeight]);
+
+  // 핸들을 잡고 위아래로 드래그해서 지도 높이 조절 (마우스 + 터치)
+  function startResize(e) {
+    e.preventDefault();
+    const startY = e.touches ? e.touches[0].clientY : e.clientY;
+    const startH = mapHeight;
+    const onMove = (ev) => {
+      const y = ev.touches ? ev.touches[0].clientY : ev.clientY;
+      const next = Math.max(180, Math.min(480, startH + (y - startY)));
+      setMapHeight(next);
+    };
+    const onUp = () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("touchend", onUp);
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchmove", onMove, { passive: false });
+    window.addEventListener("touchend", onUp);
+  }
+
   const st = {
     page: {
       background: "#0D1117",
@@ -464,8 +500,14 @@ export default function App() {
             </div>
 
             {/* MAP */}
-            <div ref={mapRef} style={{ width:"100%", height:210, borderRadius:12, overflow:"hidden", marginBottom:6, background:"#1F2937", position:"relative", zIndex:1 }} />
-            <p style={{ fontSize:11, color:"#6B7280", margin:"0 0 14px" }}>🗺 아래 루트나 지도 위 번호를 누르면, 이전 지점 → 선택 지점 경로가 표시돼요{day.id!==1 ? " (첫 지점은 숙소🏨에서 출발)" : ""}</p>
+            <div style={{ marginBottom:6 }}>
+              <div ref={mapRef} style={{ width:"100%", height:mapHeight, borderTopLeftRadius:12, borderTopRightRadius:12, overflow:"hidden", background:"#1F2937", position:"relative", zIndex:1 }} />
+              <div onMouseDown={startResize} onTouchStart={startResize}
+                style={{ height:22, background:"#1F2937", borderBottomLeftRadius:12, borderBottomRightRadius:12, display:"flex", alignItems:"center", justifyContent:"center", cursor:"ns-resize", borderTop:"1px solid #2A3645", userSelect:"none", touchAction:"none" }}>
+                <div style={{ width:40, height:4, borderRadius:2, background:"#4B5563" }} />
+              </div>
+            </div>
+            <p style={{ fontSize:11, color:"#6B7280", margin:"0 0 14px" }}>🗺 루트·번호를 누르면 경로 표시 · 지도 아래 손잡이를 위아래로 끌면 크기 조절{day.id!==1 ? " · 첫 지점은 숙소🏨 출발" : ""}</p>
 
             <p style={st.sectionTitle}>📍 이동 루트</p>
             <div style={{ background:"#1F2937", borderRadius:12, overflow:"hidden", marginBottom:6 }}>
