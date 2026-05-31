@@ -184,6 +184,7 @@ export default function App() {
   const mapObjRef = useRef(null);
   const gRef = useRef(null);
   const markersRef = useRef([]);
+  const meRef = useRef(null);
   const pathRef = useRef(null);
   const animRef = useRef(null);
   const rafRef = useRef(null);
@@ -372,6 +373,31 @@ export default function App() {
     window.addEventListener("touchend", onUp);
   }
 
+  // 현재 내 위치를 지도에 표시
+  const [locating, setLocating] = useState(false);
+  function locateMe() {
+    const map = mapObjRef.current, g = gRef.current;
+    if (!map || !g) return;
+    if (!navigator.geolocation) { alert("이 기기는 위치 기능을 지원하지 않아요."); return; }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocating(false);
+        const me = { lat: pos.coords.latitude, lng: pos.coords.longitude };
+        if (meRef.current) meRef.current.setMap(null);
+        meRef.current = new g.Marker({
+          position: me, map, zIndex: 999,
+          icon: { path: g.SymbolPath.CIRCLE, scale: 8, fillColor: "#2563EB", fillOpacity: 1, strokeColor: "#fff", strokeWeight: 3 },
+          title: "현재 내 위치",
+        });
+        map.panTo(me);
+        map.setZoom(15);
+      },
+      () => { setLocating(false); alert("위치를 가져오지 못했어요. 브라우저에서 위치 권한을 허용했는지 확인해주세요."); },
+      { enableHighAccuracy: true, timeout: 8000 }
+    );
+  }
+
   const st = {
     page: {
       background: "#0D1117",
@@ -501,7 +527,13 @@ export default function App() {
 
             {/* MAP */}
             <div style={{ marginBottom:6 }}>
-              <div ref={mapRef} style={{ width:"100%", height:mapHeight, borderTopLeftRadius:12, borderTopRightRadius:12, overflow:"hidden", background:"#1F2937", position:"relative", zIndex:1 }} />
+              <div style={{ position:"relative" }}>
+                <div ref={mapRef} style={{ width:"100%", height:mapHeight, borderTopLeftRadius:12, borderTopRightRadius:12, overflow:"hidden", background:"#1F2937", position:"relative", zIndex:1 }} />
+                <button onClick={locateMe} aria-label="현재 내 위치"
+                  style={{ position:"absolute", top:8, right:8, zIndex:5, padding:"6px 10px", borderRadius:8, border:"none", background:"rgba(17,24,39,0.9)", color:"#60A5FA", fontSize:12, fontWeight:700, cursor:"pointer", boxShadow:"0 1px 4px rgba(0,0,0,0.4)" }}>
+                  {locating ? "찾는 중…" : "📍 내 위치"}
+                </button>
+              </div>
               <div onMouseDown={startResize} onTouchStart={startResize}
                 style={{ height:22, background:"#1F2937", borderBottomLeftRadius:12, borderBottomRightRadius:12, display:"flex", alignItems:"center", justifyContent:"center", cursor:"ns-resize", borderTop:"1px solid #2A3645", userSelect:"none", touchAction:"none" }}>
                 <div style={{ width:40, height:4, borderRadius:2, background:"#4B5563" }} />
