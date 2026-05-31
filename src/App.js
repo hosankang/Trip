@@ -411,8 +411,8 @@ export default function App() {
       fontFamily: "'Noto Sans KR', -apple-system, sans-serif",
       color: "#F9FAFB",
       width: "100%",
-      maxWidth: "100%",
-      margin: 0,
+      maxWidth: "700px",
+      margin: "0 auto",
       position: "relative",
       paddingBottom: 72,
       overflowX: "hidden"
