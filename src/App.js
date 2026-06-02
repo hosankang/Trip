@@ -63,13 +63,14 @@ const DATA = {
       route:[
         { time:"09:30", emoji:"🦁", name:"우에노 동물원", note:"숙소 바로 옆 · 판다·다양한 동물 · 약 2시간", type:"sight", map:"Ueno Zoo", lat:35.71657, lng:139.77143 },
         { time:"12:00", emoji:"🏨", name:"체크아웃 (1pm)", note:"동물원 나와서 짐 찾기", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
-        { time:"12:30", emoji:"🍛", name:"마이 카레 쇼쿠도 (수프카레)", note:"우에노 · 수프카레 전문 · 매운맛 단계 선택 · 태블릿 주문", type:"food", map:"My Curry Shokudo Ueno", lat:35.71296, lng:139.77837 },
+        { time:"12:30", emoji:"🍛", name:"스아게 마루노우치점 (홋카이도 수프카레)", note:"마루노우치 · 홋카이도식 수프카레 · 매운맛 단계 선택", type:"food", map:"Suage Marunouchi", lat:35.68070, lng:139.76480 },
+        { time:"15:00", emoji:"🚇", name:"우에노역 이동", note:"마루노우치(도쿄역)에서 우에노로 · JR 약 8분", type:"move", map:"Keisei Ueno Station", lat:35.71137, lng:139.77293 },
         { time:"15:30", emoji:"🚂", name:"스카이라이너 → 나리타", note:"케이세이우에노 탑승 · ¥2,570 · 40분", type:"move", map:"Keisei Ueno Station", lat:35.71137, lng:139.77293 },
         { time:"17:00", emoji:"🍜", name:"긴자 카가리 (미슐랭 치킨라멘)", note:"제2터미널 · 진한 닭 육수 소바 · 마지막 식사", type:"food", map:"Ginza Kagari Narita Airport", lat:35.77372, lng:140.38999 },
         { time:"19:00", emoji:"✈️", name:"나리타공항 출발", note:"식사 후 체크인·보안검색 · 탑승 2시간 전 권장", type:"move", map:"Narita Airport Terminal 1", lat:35.7719, lng:140.3928 },
       ],
       meals:[
-        { time:"점심", emoji:"🍛", name:"마이 카레 쇼쿠도", area:"우에노", note:"수프카레 전문 · 매운맛 단계 선택 · 숙소 근처", tag:"수프카레", map:"My Curry Shokudo Ueno" },
+        { time:"점심", emoji:"🍛", name:"스아게 마루노우치점", area:"마루노우치", note:"홋카이도식 수프카레 · 매운맛 단계 선택", tag:"수프카레", map:"Suage Marunouchi" },
         { time:"저녁", emoji:"🍜", name:"긴자 카가리 (공항점)", area:"나리타공항", note:"미슐랭 닭 육수 라멘 · 제2터미널 · 마지막 식사", tag:"라멘", map:"Ginza Kagari Narita Airport" },
       ]},
   ],
