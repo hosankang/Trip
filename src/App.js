@@ -29,54 +29,43 @@ const imgSearchUrl = (q) => `https://www.google.com/search?tbm=isch&q=${encodeUR
 
 const DATA = {
   days: [
-    { id:1, date:"6/3 (화)", color:C.d1, theme:"나리타 도착 → 우에노 → 도쿄타워", weather:"🌧", weatherText:"비 가능성 높음",
+    { id:1, date:"6/4 (목)", color:C.d1, theme:"나리타 도착 → 도쿄타워 → 신바시", weather:"☁️", weatherText:"태풍 지나간 후·흐림",
       route:[
-        { time:"10:00", emoji:"✈️", name:"나리타공항", note:"케이세이 카운터에서 스카이라이너 구매 + Suica 구입", type:"move", map:"Narita Airport Terminal 1", lat:35.7719, lng:140.3928 },
-        { time:"11:20", emoji:"🚂", name:"스카이라이너", note:"나리타 → 우에노 40분 · ¥2,570", type:"move", map:"Keisei Ueno Station", lat:35.71137, lng:139.77293 },
-        { time:"12:00", emoji:"🍜", name:"이치란 라멘 (점심)", note:"우에노역 도착 후 바로 · 24시간 · 1인 칸막이", type:"food", map:"Ichiran Ueno", lat:35.71241, lng:139.77523 },
-        { time:"13:00", emoji:"🏨", name:"APA호텔 체크인", note:"게이세이 우에노 역 앞 · 얼리체크인 1pm", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
-        { time:"15:00", emoji:"🌳", name:"우에노공원 · 아메요코", note:"공원 산책 + 노점 구경", type:"sight", map:"Ueno Park", lat:35.71476, lng:139.77343 },
-        { time:"17:30", emoji:"🥐", name:"마리옹 크레페 (도쿄타워점)", note:"도쿄타워 바로 아래 · 타워 보며 크레페", type:"food", map:"Marion Crepes Tokyo Tower Shibakoen", lat:35.65877, lng:139.74573 },
-        { time:"18:00", emoji:"🗼", name:"도쿄타워 야경 · 사진", note:"타워 주변에서 점등 보며 사진 (~20:30)", type:"sight", map:"Tokyo Tower", lat:35.65858, lng:139.74543 },
-        { time:"21:00", emoji:"🏨", name:"숙소 복귀", note:"카미야초→우에노 약 30분", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
+        { time:"17:15", emoji:"✈️", name:"나리타공항 도착", note:"입국 수속 후 케이세이 카운터에서 스카이라이너 구매 + Suica 구입", type:"move", map:"Narita Airport Terminal 1", lat:35.7719, lng:140.3928 },
+        { time:"18:00", emoji:"🚂", name:"스카이라이너", note:"나리타 → 우에노 40분 · ¥2,570", type:"move", map:"Keisei Ueno Station", lat:35.71137, lng:139.77293 },
+        { time:"18:50", emoji:"🏨", name:"APA호텔 체크인·짐 두기", note:"게이세이 우에노 역 앞 · 짐만 두고 바로 출발", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
+        { time:"20:00", emoji:"🥐", name:"마리옹 크레페 (도쿄타워점)", note:"도쿄타워 바로 아래 · 타워 보며 크레페", type:"food", map:"Marion Crepes Tokyo Tower Shibakoen", lat:35.65877, lng:139.74573 },
+        { time:"20:30", emoji:"🗼", name:"도쿄타워 야경·사진", note:"타워 주변에서 점등 보며 사진", type:"sight", map:"Tokyo Tower", lat:35.65858, lng:139.74543 },
+        { time:"21:30", emoji:"🍜", name:"이치란 라멘 (신바시점·저녁)", note:"도쿄타워에서 가까움 · 24시간 · 1인 칸막이", type:"food", map:"Ichiran Shimbashi", lat:35.66623, lng:139.75835 },
+        { time:"23:00", emoji:"🏨", name:"숙소 복귀", note:"신바시→우에노 약 25분", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
       ],
       meals:[
-        { time:"점심", emoji:"🍜", name:"이치란 라멘", area:"우에노", note:"24시간 · 1인 칸막이 · 우에노 아트레", tag:"라멘", map:"Ichiran Ueno" },
         { time:"간식", emoji:"🥐", name:"마리옹 크레페 (도쿄타워점)", area:"시바코엔", note:"도쿄타워 아래 · 타워 보며 크레페", tag:"크레페", map:"Marion Crepes Tokyo Tower Shibakoen" },
+        { time:"저녁", emoji:"🍜", name:"이치란 라멘 (신바시점)", area:"신바시", note:"24시간 · 1인 칸막이 · 도쿄타워 근처", tag:"라멘", map:"Ichiran Shimbashi" },
       ]},
-    { id:2, date:"6/4 (목)", color:C.d2, theme:"츠키지 먹방 → 팀랩 → 아사쿠사", weather:"🌧", weatherText:"비 가능성 높음",
+    { id:2, date:"6/5 (금)", color:C.d2, theme:"츠키지 → 시부야 스카이 → 스카이트리·아사쿠사", weather:"☀️", weatherText:"맑음 예상",
       route:[
-        { time:"10:00", emoji:"🐟", name:"츠키지 장외시장 (먹방)", note:"신선한 해산물·계란말이·꼬치 등 이것저것 · 보통 13시쯤 마감", type:"food", map:"Tsukiji Outer Market", lat:35.66477, lng:139.77025 },
-        { time:"15:30", emoji:"🎨", name:"팀랩 플래닛츠", note:"✅ 예약 완료 · 반바지+맨발 추천", type:"special", map:"teamLab Planets Tokyo", lat:35.64912, lng:139.78977 },
-        { time:"18:30", emoji:"🥩", name:"아사쿠사 규카츠 (저녁)", note:"평점 4.8 · 돌판 직화 구이", type:"food", map:"Asakusa Gyukatsu", lat:35.71077, lng:139.79595 },
-        { time:"20:00", emoji:"⛩", name:"센소지 야경", note:"규카츠 바로 근처 · 야간 조명 분위기 최고", type:"sight", map:"Senso-ji Temple", lat:35.71477, lng:139.79666 },
-        { time:"22:00", emoji:"🏨", name:"숙소 복귀", note:"아사쿠사→우에노 약 10분", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
-      ],
-      meals:[
-        { time:"점심", emoji:"🐟", name:"츠키지 장외시장 먹방", area:"츠키지", note:"해산물·계란말이·꼬치 등 이것저것", tag:"먹방", map:"Tsukiji Outer Market" },
-        { time:"저녁", emoji:"🥩", name:"아사쿠사 규카츠", area:"아사쿠사", note:"평점 4.8 · 돌판에 직접 구워먹기", tag:"규카츠", map:"Asakusa Gyukatsu" },
-      ]},
-    { id:3, date:"6/5 (금)", color:C.d3, theme:"시부야 스카이 → 스카이트리 야경", weather:"☁️", weatherText:"흐림 예상",
-      route:[
+        { time:"08:00", emoji:"🐟", name:"츠키지 장외시장 (먹방)", note:"신선한 해산물·계란말이·꼬치 등 이것저것 · 보통 13시쯤 마감", type:"food", map:"Tsukiji Outer Market", lat:35.66477, lng:139.77025 },
         { time:"11:00", emoji:"🚦", name:"시부야 스크램블 교차로", note:"스타벅스 2층 창가 추천 · 스카이 입장 전 구경", type:"sight", map:"Shibuya Crossing", lat:35.65948, lng:139.70056 },
         { time:"12:00", emoji:"🌆", name:"시부야 스카이", note:"✅ 예약 완료 · 약 2시간 · 옥상 전망대", type:"sight", map:"Shibuya Sky", lat:35.65867, lng:139.70198 },
-        { time:"14:30", emoji:"🍳", name:"모헤지 (몬자야키)", note:"스크램블 스퀘어 12층 · 스카이 보고 바로 · 눈앞 철판구이 · 평점4.8", type:"food", map:"Moheji Shibuya Scramble Square", lat:35.65832, lng:139.70223 },
+        { time:"14:00", emoji:"🍳", name:"모헤지 (몬자야키)", note:"스크램블 스퀘어 12층 · 눈앞 철판구이 · 평점 4.8", type:"food", map:"Moheji Shibuya Scramble Square", lat:35.65832, lng:139.70223 },
         { time:"18:00", emoji:"🗼", name:"도쿄 스카이트리 (야경)", note:"✅ 예약 완료 · 634m 전망대 · 오시아게역", type:"sight", map:"Tokyo Skytree", lat:35.71006, lng:139.81070 },
-        { time:"20:30", emoji:"🍗", name:"코마키치 야키토리 (저녁)", note:"숯불 야키토리 · 술 없어도 OK · 니혼바시", type:"food", map:"Komakichi Nihonbashi", lat:35.68699, lng:139.78002 },
+        { time:"19:30", emoji:"🥩", name:"아사쿠사 규카츠 (저녁)", note:"평점 4.8 · 돌판 직화 구이 · 영업 ~20:00", type:"food", map:"Asakusa Gyukatsu", lat:35.71077, lng:139.79595 },
+        { time:"21:00", emoji:"⛩", name:"센소지 야경", note:"규카츠 근처 · 야간 조명 분위기 최고", type:"sight", map:"Senso-ji Temple", lat:35.71477, lng:139.79666 },
         { time:"22:00", emoji:"🛒", name:"돈키호테 우에노점", note:"숙소 근처 · 막판 쇼핑 (새벽 4시까지 영업)", type:"sight", map:"Don Quijote Ueno", lat:35.70808, lng:139.77091 },
       ],
       meals:[
-        { time:"아침", emoji:"❓", name:"아침 (미정)", area:"미정", note:"장소 정해지면 알려주세요 — 넣어드릴게요", tag:"미정", map:"" },
-        { time:"점심", emoji:"🍳", name:"모헤지 (몬자야키·오코노미야키)", area:"시부야", note:"스크램블 스퀘어 12층 · 평점 4.8", tag:"철판구이", map:"Moheji Shibuya Scramble Square" },
-        { time:"저녁", emoji:"🍗", name:"코마키치 야키토리", area:"니혼바시", note:"숯불 야키토리 · 금토 영업", tag:"야키토리", map:"Komakichi Nihonbashi" },
+        { time:"아침", emoji:"🐟", name:"츠키지 장외시장 먹방", area:"츠키지", note:"해산물·계란말이·꼬치 등 이것저것", tag:"먹방", map:"Tsukiji Outer Market" },
+        { time:"점심", emoji:"🍳", name:"모헤지 (몬자야키)", area:"시부야", note:"스크램블 스퀘어 12층 · 평점 4.8", tag:"철판구이", map:"Moheji Shibuya Scramble Square" },
+        { time:"저녁", emoji:"🥩", name:"아사쿠사 규카츠", area:"아사쿠사", note:"평점 4.8 · 돌판에 직접 구워먹기", tag:"규카츠", map:"Asakusa Gyukatsu" },
       ]},
-    { id:4, date:"6/6 (일)", color:C.d4, theme:"우에노 동물원 → 나리타 출발 ✈️", weather:"☁️", weatherText:"흐림 예상",
+    { id:3, date:"6/6 (토)", color:C.d4, theme:"우에노 동물원 → 나리타 출발 ✈️", weather:"☁️", weatherText:"흐림 예상",
       route:[
         { time:"09:30", emoji:"🦁", name:"우에노 동물원", note:"숙소 바로 옆 · 판다·다양한 동물 · 약 2시간", type:"sight", map:"Ueno Zoo", lat:35.71657, lng:139.77143 },
         { time:"12:00", emoji:"🏨", name:"체크아웃 (1pm)", note:"동물원 나와서 짐 찾기", type:"hotel", map:"APA Hotel Keisei Ueno Ekimae", lat:35.71137, lng:139.77293 },
         { time:"12:30", emoji:"🍛", name:"마이 카레 쇼쿠도 (수프카레)", note:"우에노 · 수프카레 전문 · 매운맛 단계 선택 · 태블릿 주문", type:"food", map:"My Curry Shokudo Ueno", lat:35.71296, lng:139.77837 },
         { time:"15:30", emoji:"🚂", name:"스카이라이너 → 나리타", note:"케이세이우에노 탑승 · ¥2,570 · 40분", type:"move", map:"Keisei Ueno Station", lat:35.71137, lng:139.77293 },
-        { time:"16:30", emoji:"🍜", name:"긴자 카가리 (미슐랭 치킨라멘)", note:"제2터미널 · 진한 닭 육수 소바 · 마지막 식사", type:"food", map:"Ginza Kagari Narita Airport", lat:35.77372, lng:140.38999 },
+        { time:"17:00", emoji:"🍜", name:"긴자 카가리 (미슐랭 치킨라멘)", note:"제2터미널 · 진한 닭 육수 소바 · 마지막 식사", type:"food", map:"Ginza Kagari Narita Airport", lat:35.77372, lng:140.38999 },
         { time:"19:00", emoji:"✈️", name:"나리타공항 출발", note:"식사 후 체크인·보안검색 · 탑승 2시간 전 권장", type:"move", map:"Narita Airport Terminal 1", lat:35.7719, lng:140.3928 },
       ],
       meals:[
@@ -85,35 +74,25 @@ const DATA = {
       ]},
   ],
   tips: [
-    { emoji:"🎨", title:"팀랩 플래닛츠", desc:"teamlab.art 에서 지금 예약!\n당일권 거의 없음 · 반바지+맨발 추천", urgent:true },
     { emoji:"🍣", title:"스시다이 혼칸", desc:"11:30 도착 권장\n점심 피크 전이라 웨이팅 짧음", urgent:false },
     { emoji:"💳", title:"Suica 나리타에서 구매", desc:"JR 자동발매기 · ¥10,000~15,000 충전\n트레블월렛 카드로 충전 가능", urgent:false },
-    { emoji:"☂️", title:"6/4(목) 비 대비", desc:"접이식 우산 or 가벼운 우비 챙기기\n팀랩은 실내라 OK", urgent:false },
+    { emoji:"🌀", title:"태풍 후 운행 확인", desc:"스카이라이너·지하철 지연 여부\n출발 전 운행 상황 한 번 체크", urgent:true },
     { emoji:"🥞", title:"플리퍼스 팬케이크", desc:"온라인 예약 추천 · 웨이팅 길 수 있음", urgent:false },
     { emoji:"📱", title:"앱 설치 추천", desc:"Google Maps + Navitime\n오프라인 저장 해두면 편함", urgent:false },
   ],
   transport: {
     suica: ["나리타공항 JR 자동발매기에서 구매","보증금 ¥500 + ¥10,000~15,000 충전","트레블월렛 카드로 충전 가능","도쿄 내 지하철·JR·버스 전부 사용","잔액 부족 시 역 발매기에서 재충전","귀국 시 JR 창구서 보증금 ¥500 환불"],
-    costs: [["스카이라이너 왕복","¥5,140"],["Day 1 지하철","¥360"],["Day 2 지하철","¥1,140"],["Day 3 지하철","¥930"],["Day 4 지하철","¥420"]],
+    costs: [["스카이라이너 왕복","¥5,140"],["Day 1 지하철","¥360"],["Day 2 지하철","¥1,140"],["Day 3 지하철","¥420"]],
     dayCosts: [
       { day:"Day 2", routes:[
-        {from:"우에노",to:"오시아게(스카이트리)",via:"메트로 긴자선",yen:"¥180"},
-        {from:"오시아게",to:"츠키지",via:"도에이 아사쿠사선",yen:"¥260"},
-        {from:"츠키지",to:"도요스(팀랩)",via:"메트로 유라쿠초선",yen:"¥180"},
-        {from:"도요스",to:"신주쿠",via:"유라쿠초선+마루노우치선",yen:"¥310"},
-        {from:"신주쿠",to:"우에노",via:"JR 야마노테선",yen:"¥210"},
+        {from:"우에노",to:"츠키지",via:"메트로 히비야선",yen:"¥210"},
+        {from:"츠키지",to:"시부야",via:"히비야선+긴자선",yen:"¥260"},
+        {from:"시부야",to:"오시아게(스카이트리)",via:"긴자선+아사쿠사선",yen:"¥310"},
+        {from:"오시아게",to:"아사쿠사",via:"도에이 아사쿠사선",yen:"¥180"},
+        {from:"아사쿠사",to:"우에노",via:"메트로 긴자선",yen:"¥180"},
       ]},
       { day:"Day 3", routes:[
-        {from:"우에노",to:"하라주쿠",via:"JR 야마노테선",yen:"¥210"},
-        {from:"하라주쿠",to:"시부야",via:"도보 15분",yen:"무료"},
-        {from:"시부야",to:"긴자",via:"메트로 긴자선",yen:"¥210"},
-        {from:"긴자",to:"카미야초(도쿄타워)",via:"메트로 히비야선",yen:"¥170"},
-        {from:"카미야초",to:"코덴마초(코마키치)",via:"메트로 히비야선",yen:"¥170"},
-        {from:"코덴마초",to:"우에노",via:"메트로 히비야선",yen:"¥170"},
-      ]},
-      { day:"Day 4", routes:[
-        {from:"우에노",to:"신주쿠",via:"JR 야마노테선",yen:"¥210"},
-        {from:"신주쿠",to:"우에노",via:"JR 야마노테선",yen:"¥210"},
+        {from:"우에노",to:"우에노동물원",via:"도보 5분",yen:"무료"},
       ]},
     ],
   },
@@ -429,11 +408,11 @@ export default function App() {
   };
 
   function ddayText() {
-    const start = new Date("2026-06-03T00:00:00+09:00");
+    const start = new Date("2026-06-04T00:00:00+09:00");
     const diff = Math.ceil((start - new Date()) / (1000*60*60*24));
     if (diff > 0) return "출발까지 D-" + diff;
     if (diff === 0) return "오늘 출발! ✈️";
-    if (diff >= -3) return "여행 " + (-diff+1) + "일차 🗾";
+    if (diff >= -2) return "여행 " + (-diff+1) + "일차 🗾";
     return "여행 완료 ✨";
   }
 
@@ -494,7 +473,7 @@ export default function App() {
       <div style={st.topBar}>
         <div>
           <p style={{ margin:0, fontSize:16, fontWeight:700 }}>🗾 도쿄 여행 일정</p>
-          <p style={{ margin:"2px 0 0", fontSize:11, color:"#9CA3AF" }}>2026.06.03 ~ 06.06 · 3박 4일</p>
+          <p style={{ margin:"2px 0 0", fontSize:11, color:"#9CA3AF" }}>2026.06.04 ~ 06.06 · 2박 3일</p>
         </div>
         <div style={{ background:"#1F2937", borderRadius:20, padding:"5px 12px", fontSize:12, fontWeight:700, color:"#60A5FA" }}>{ddayText()}</div>
       </div>
@@ -653,9 +632,9 @@ export default function App() {
             ))}
             <div style={{ display:"flex", justifyContent:"space-between", padding:"12px 0 4px", borderTop:"1px solid #34D399", marginTop:4 }}>
               <span style={{ fontSize:14, fontWeight:700, color:"#34D399" }}>총합계 (1인)</span>
-              <span style={{ fontSize:16, fontWeight:700, color:"#34D399" }}>≈ ¥7,990</span>
+              <span style={{ fontSize:16, fontWeight:700, color:"#34D399" }}>≈ ¥7,060</span>
             </div>
-            <p style={{ margin:"4px 0 0", fontSize:11, color:"#6B7280" }}>* 약 72,000원 기준</p>
+            <p style={{ margin:"4px 0 0", fontSize:11, color:"#6B7280" }}>* 약 64,000원 기준</p>
           </div>
           <p style={st.sectionTitle}>일별 상세 경로</p>
           {DATA.transport.dayCosts.map((dc, di) => (
